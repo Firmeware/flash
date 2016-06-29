@@ -20,6 +20,8 @@ elif [ -d $CURDIR/../../source/neutrino-mp-cst-next-new ]; then
 	NMP_REV=_NMP-rev`cd $CURDIR/../../source/neutrino-mp-cst-next-new && git log | grep "^commit" | wc -l`-github
 elif [ -d $CURDIR/../../source/neutrino-mp-martii-github ]; then
 	NMP_REV=_NMP-rev`cd $CURDIR/../../source/neutrino-mp-martii-github && git log | grep "^commit" | wc -l`-martii-github
+elif [ -d $CURDIR/../../source/neutrino-mp-tangos ]; then
+	NMP_REV=_NMP-rev`cd $CURDIR/../../source/neutrino-mp-tangos && git log | grep "^commit" | wc -l`-tangos
 else
 	NMP_REV=_NMP-rev`cd $CURDIR/../../source/neutrino-mp && git log | grep "^commit" | wc -l`
 fi

@@ -6,6 +6,7 @@ OUTDIR=$3
 TMPKERNELDIR=$4
 TMPFWDIR=$5
 TMPROOTDIR=$6
+CREATEMULTI=$7
 
 echo "CURDIR       = $CURDIR"
 echo "TUFSBOXDIR   = $TUFSBOXDIR"
@@ -74,8 +75,12 @@ $MUP c $OUTFILE << EOF
 ;
 EOF
 
-md5sum -b $OUTFILE | awk -F' ' '{print $1}' > $OUTFILE.md5
-zip -j $OUTFILE_Z.zip $OUTFILE $OUTFILE.md5
+if [ "$CREATEMULTI" == "" ]; then
+  md5sum -b $OUTFILE | awk -F' ' '{print $1}' > $OUTFILE.md5
+  zip -j $OUTFILE_Z.zip $OUTFILE $OUTFILE.md5
+else
+  zip -j $OUTFILE_Z.zip $OUTDIR/*.bin
+fi
 rm -f $OUTFILE
 rm -f $OUTFILE.md5
 rm -f $OUTDIR/uImage.bin
